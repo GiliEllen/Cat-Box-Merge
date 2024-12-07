@@ -10,8 +10,6 @@ public class BoxAreaManager : MonoBehaviour
     public float spacing = 0.0f;
 
     public int columns = 7;            
-    private float cellWidth = 0.5f;         
-    private float cellHeight = 0.5f; 
      public GameObject[] boxes;
 
     public int GetCatsCount()

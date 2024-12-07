@@ -8,7 +8,7 @@ public class Cat : MonoBehaviour
     public Sprite LoafSprite;
     public Sprite sitSprite;
     public Sprite StandSprite;
-    public bool isClickable;
+    public bool isClickable = false;
     public CatStatus catStatus = CatStatus.Loafing;
     public BoxAreaManager boxAreaManager;
 
@@ -63,6 +63,7 @@ public class Cat : MonoBehaviour
 
             case CatStatus.Loafing:
                 spriteRenderer.sprite = LoafSprite;
+                spriteRenderer.color = new Color(174f / 255f, 174f / 255f, 174f / 255f, 255f / 255f);
                 break;
 
             default:
