@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public String color;
+    public Sprite LoafSprite;
+    public Sprite sitSprite;
+    public Sprite StandSprite;
+    public bool isClickable;
+    public CatStatus catStatus;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
