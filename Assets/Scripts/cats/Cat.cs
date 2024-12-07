@@ -10,6 +10,7 @@ public class Cat : MonoBehaviour
     public Sprite StandSprite;
     public bool isClickable;
     public CatStatus catStatus = CatStatus.Loafing;
+    public BoxAreaManager boxAreaManager;
 
     void Awake() {
         ChangeCatStatus(CatStatus.Loafing);
@@ -36,13 +37,14 @@ public class Cat : MonoBehaviour
             //TODO:
             //move cat
             Debug.Log("cat is OK to move");
+            boxAreaManager.AddCat(this);
             setClickableFalse();
         }
     }
 
     public void ChangeCatStatus(CatStatus status) {
         catStatus = status;
-        Debug.Log("cat " + color + " is " + catStatus);
+        // Debug.Log("cat " + color + " is " + catStatus);
         SetSprite(status);
     }
 
