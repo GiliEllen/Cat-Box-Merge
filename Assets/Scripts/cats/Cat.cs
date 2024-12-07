@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-    public String color;
+    public string color;
     public Sprite LoafSprite;
     public Sprite sitSprite;
     public Sprite StandSprite;

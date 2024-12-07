@@ -1,6 +1,6 @@
-public CatStatus 
+public enum CatStatus 
 {
-    Sitting, 
-    Loafing, 
+    Sitting,
+    Loafing,
     Standing
 }
