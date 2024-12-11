@@ -10,7 +10,8 @@ public class BoxAreaManager : MonoBehaviour
     public float spacing = 0.0f;
 
     public int columns = 7;            
-     public GameObject[] boxes;
+    public GameObject[] boxes;
+    public LevelManager levelManager; 
 
     public int GetCatsCount()
     {
@@ -29,6 +30,8 @@ public class BoxAreaManager : MonoBehaviour
         // MoveCatToBoxArea(newCat);
         PositionCats(); 
         CheckAndRemoveCatsOfSameColor(newCat.color);
+        Debug.Log(newCat.catId);
+        levelManager.RemoveCatFromList(newCat.catId);
     }
 
    private void PositionCats()

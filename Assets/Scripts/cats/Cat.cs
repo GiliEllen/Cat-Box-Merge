@@ -8,9 +8,11 @@ public class Cat : MonoBehaviour
     public Sprite LoafSprite;
     public Sprite sitSprite;
     public Sprite StandSprite;
-    public bool isClickable = false;
+    public bool isClickable = true;
     public CatStatus catStatus = CatStatus.Loafing;
     public BoxAreaManager boxAreaManager;
+
+    public int catId;
 
     void Awake() {
         ChangeCatStatus(CatStatus.Loafing);
@@ -23,22 +25,23 @@ public class Cat : MonoBehaviour
         ChangeCatStatus(CatStatus.Standing);
     }
 
-    public void setClickableFalse() 
+    public void setClickableFalse(CatStatus status) 
     {
         isClickable = false;
-        ChangeCatStatus(CatStatus.Sitting);
+        ChangeCatStatus(status);
     }
 
     void OnMouseDown()
     {
         if (!isClickable) {
+             Debug.Log("cat is BLOCK");
             return;
         } else {
             //TODO:
             //move cat
             Debug.Log("cat is OK to move");
             boxAreaManager.AddCat(this);
-            setClickableFalse();
+            setClickableFalse(CatStatus.Sitting);
         }
     }
 
@@ -55,15 +58,18 @@ public class Cat : MonoBehaviour
             {
             case CatStatus.Sitting:
                 spriteRenderer.sprite = sitSprite;
+                setColor(spriteRenderer, this.color);
                 break;
 
             case CatStatus.Standing:
                 spriteRenderer.sprite = StandSprite;
+                setColor(spriteRenderer, this.color);
                 break;
 
             case CatStatus.Loafing:
                 spriteRenderer.sprite = LoafSprite;
-                spriteRenderer.color = new Color(174f / 255f, 174f / 255f, 174f / 255f, 255f / 255f);
+                setColor(spriteRenderer, "gray");
+                // spriteRenderer.color = new Color(174f / 255f, 174f / 255f, 174f / 255f, 255f / 255f);
                 break;
 
             default:
@@ -71,5 +77,15 @@ public class Cat : MonoBehaviour
                 break;
             }
          }
+    }
+
+    public void setColor(SpriteRenderer spriteRenderer, string color) {
+        if (color == "gray") {
+            spriteRenderer.color = new Color(174f / 255f, 174f / 255f, 174f / 255f, 255f / 255f);
+        } else if (color == "orange") {
+             spriteRenderer.color = new Color(255f / 255f, 166f / 255f, 0f / 255f, 255f / 255f);
+        } else if (color == "black") {
+            spriteRenderer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject[] catsPrefabs;
+    // public GameObject[] catsPrefabs;
     public Cat[] catRow1 ;
     public Cat[] catRow2 ;
     public Cat[] catRow3 ;
@@ -20,51 +20,46 @@ public class LevelManager : MonoBehaviour
             new List<Cat>(catRow3),
             new List<Cat>(catRow4)
         };
-        initializeCatStatus();
+        InitializeCatStatus();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+public void RemoveCatFromList(int catId) {
+    for (int row = 0; row < catMatrix.Count; row++) {
+        for (int col = 0; col < catMatrix[row].Count; col++) {
+            Cat currentCat = catMatrix[row][col];
+            if (currentCat != null && currentCat.catId == catId) {
+                catMatrix[row][col] = null;
+                Debug.Log("cat is removed");
+            }
+        }
     }
+    InitializeCatStatus(); 
+}
 
- void initializeCatStatus() 
-{
-    for (int i = 0; i < catMatrix.Count; i++) 
-    {
-        for (int j = 0; j < catMatrix[i].Count; j++) 
+    void InitializeCatStatus() {
+        for (int i = 0; i < catMatrix.Count; i++) 
         {
-            // Mark cats in the last row as clickable
-            if (i == catMatrix.Count - 1) 
+            for (int j = 0; j < catMatrix[i].Count; j++) 
             {
-                if (catMatrix[i][j] != null) 
-                {
-                    catMatrix[i][j].isClickable = true;
-                }
-            }
+                Cat currentCat = catMatrix[i][j];
 
-            // Check if the next row exists and is within bounds
-            if (i + 1 < catMatrix.Count && j < catMatrix[i + 1].Count) 
-            {
-                if (catMatrix[i+1][j] == null) 
+                if (currentCat == null)
                 {
-                    if (catMatrix[i][j] != null) 
-                    {
-                        catMatrix[i][j].isClickable = true;
-                    }
+                    continue;
+                } else {
+                    Debug.Log(currentCat);
                 }
-            }
 
-            // Check the left and right neighbors for valid indices
-            if ((j - 1 >= 0 && catMatrix[i][j-1] == null) || (j + 1 < catMatrix[i].Count && catMatrix[i][j+1] == null)) 
-            {
-                if (catMatrix[i][j] != null) 
-                {
-                    catMatrix[i][j].isClickable = true;
+                bool hasNextInRow = (j + 1 < catMatrix[i].Count) && (catMatrix[i][j + 1] != null);
+                bool hasPrevInRow = (j - 1 >= 0) && (catMatrix[i][j - 1] != null);
+                bool hasNextRow = (i + 1 < catMatrix.Count) && (j < catMatrix[i + 1].Count) && (catMatrix[i + 1][j] != null);
+
+                if (hasNextInRow && hasPrevInRow && hasNextRow) {
+                    currentCat.setClickableFalse(CatStatus.Loafing);
+                } else {
+                    currentCat.setClickableTrue();
                 }
             }
         }
     }
-}
 }
