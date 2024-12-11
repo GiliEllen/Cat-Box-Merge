@@ -69,7 +69,6 @@ public class Cat : MonoBehaviour
             case CatStatus.Loafing:
                 spriteRenderer.sprite = LoafSprite;
                 setColor(spriteRenderer, "gray");
-                // spriteRenderer.color = new Color(174f / 255f, 174f / 255f, 174f / 255f, 255f / 255f);
                 break;
 
             default:
@@ -85,7 +84,7 @@ public class Cat : MonoBehaviour
         } else if (color == "orange") {
              spriteRenderer.color = new Color(255f / 255f, 166f / 255f, 0f / 255f, 255f / 255f);
         } else if (color == "black") {
-            spriteRenderer.color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
+            spriteRenderer.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
         }
     }
 }
