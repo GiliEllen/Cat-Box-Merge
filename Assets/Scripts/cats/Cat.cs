@@ -40,6 +40,7 @@ public class Cat : MonoBehaviour
             //TODO:
             //move cat
             Debug.Log("cat is OK to move");
+            Debug.Log(this);
             boxAreaManager.AddCat(this);
             setClickableFalse(CatStatus.Sitting);
         }

@@ -26,22 +26,29 @@ public class BoxAreaManager : MonoBehaviour
     public void AddCat(Cat newCat)
     {
         cats.Add(newCat);
-        Debug.Log("Cat added.");
-        // MoveCatToBoxArea(newCat);
+        // Debug.Log("Cat added.");
         PositionCats(); 
         CheckAndRemoveCatsOfSameColor(newCat.color);
-        Debug.Log(newCat.catId);
+        // Debug.Log(newCat.catId);
         levelManager.RemoveCatFromList(newCat.catId);
-    }
 
-   private void PositionCats()
-    {
-
-        for (int i = 0; i < cats.Count; i++)
-        {
-            cats[i].transform.position = boxes[i].transform.position;
+        bool isGameOver = IsGameOver();
+        // Debug.Log("isGameOver: " + isGameOver);
+        bool isGameWin = levelManager.CheckIfGameWin();
+        if (isGameWin) {
+            levelManager.CompleteLevel();
         }
     }
+
+private void PositionCats()
+{
+    for (int i = 0; i < cats.Count; i++)
+    {
+        Vector3 newPosition = boxes[i].transform.position;
+        newPosition.y += 0.25f;
+        cats[i].transform.position = newPosition;
+    }
+}
 
     private void CheckAndRemoveCatsOfSameColor(string color)
     {
@@ -54,7 +61,7 @@ public class BoxAreaManager : MonoBehaviour
                 cat.gameObject.SetActive(false);
             }
             cats.RemoveAll(cat => cat.color == color);
-            Debug.Log($"Removed all cats of color: {color}");
+            // Debug.Log($"Removed all cats of color: {color}");
         }
 
         if (IsGameOver()) {
@@ -65,7 +72,7 @@ public class BoxAreaManager : MonoBehaviour
     public bool IsGameOver() {
         if (cats.Count == 7) {
             //TODO: game over logic
-            Debug.Log("Game over");
+            // Debug.Log("Game over");
             return true;
         } else {
             return false;
