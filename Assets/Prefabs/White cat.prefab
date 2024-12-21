@@ -19,30 +19,30 @@ PrefabInstance:
     - target: {fileID: 5053445827466536792, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: sitSprite
       value: 
-      objectReference: {fileID: 1399428181, guid: 2cff3edd93f64af43975ef15018a2ef0, type: 3}
+      objectReference: {fileID: -1565661217, guid: 5f83a6e2deb907f48a384aa0f7383a84, type: 3}
     - target: {fileID: 5053445827466536792, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: LoafSprite
       value: 
-      objectReference: {fileID: -1552982949, guid: 2cff3edd93f64af43975ef15018a2ef0, type: 3}
+      objectReference: {fileID: -1021908717, guid: 5f83a6e2deb907f48a384aa0f7383a84, type: 3}
     - target: {fileID: 5053445827466536792, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: StandSprite
       value: 
-      objectReference: {fileID: 2029914642, guid: 2cff3edd93f64af43975ef15018a2ef0, type: 3}
+      objectReference: {fileID: 1513085126, guid: 5f83a6e2deb907f48a384aa0f7383a84, type: 3}
     - target: {fileID: 8126046319075793689, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.597082
+      value: 0.9676038
       objectReference: {fileID: 0}
     - target: {fileID: 8126046319075793689, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.6314117
+      value: 0.9476084
       objectReference: {fileID: 0}
     - target: {fileID: 8126046319075793689, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3979
+      value: -0.5553
       objectReference: {fileID: 0}
     - target: {fileID: 8126046319075793689, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1579
+      value: 0.4999
       objectReference: {fileID: 0}
     - target: {fileID: 8126046319075793689, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 8208729395382559763, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1552982949, guid: 2cff3edd93f64af43975ef15018a2ef0, type: 3}
+      objectReference: {fileID: -1021908717, guid: 5f83a6e2deb907f48a384aa0f7383a84, type: 3}
     - target: {fileID: 8208729395382559763, guid: 6191126d630c3e846be4efec214ddfec, type: 3}
       propertyPath: m_SortingOrder
       value: 5

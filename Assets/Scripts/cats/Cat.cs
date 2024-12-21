@@ -59,12 +59,12 @@ public class Cat : MonoBehaviour
             {
             case CatStatus.Sitting:
                 spriteRenderer.sprite = sitSprite;
-                setColor(spriteRenderer, this.color);
+                setColor(spriteRenderer, "white");
                 break;
 
             case CatStatus.Standing:
                 spriteRenderer.sprite = StandSprite;
-                setColor(spriteRenderer, this.color);
+                setColor(spriteRenderer, "white");
                 break;
 
             case CatStatus.Loafing:
@@ -82,10 +82,8 @@ public class Cat : MonoBehaviour
     public void setColor(SpriteRenderer spriteRenderer, string color) {
         if (color == "gray") {
             spriteRenderer.color = new Color(174f / 255f, 174f / 255f, 174f / 255f, 255f / 255f);
-        } else if (color == "orange") {
-             spriteRenderer.color = new Color(255f / 255f, 166f / 255f, 0f / 255f, 255f / 255f);
-        } else if (color == "black") {
-            spriteRenderer.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        } else if (color == "white") {
+             spriteRenderer.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
         }
     }
 }

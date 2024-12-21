@@ -18,6 +18,10 @@ public class LevelManager : MonoBehaviour
     public GameObject nextSubLevel;
     public GameObject levelIndicator;
     public GameObject nextLevelIndicator;
+    public GameObject levelMap;
+    public GameObject nextLevelMap;
+    public GameObject levelInstruction;
+    public GameObject nextLevelInstruction;
     void Start()
     {
         catMatrix = new List<List<Cat>>()
@@ -53,7 +57,9 @@ public void RemoveCatFromList(int catId) {
                 if (currentCat == null)
                 {
                     continue;
-                } else {
+                } else if (currentCat.catId == 0) {
+                    continue;
+                } {
                     Debug.Log(currentCat);
                 }
 
@@ -77,6 +83,8 @@ public void RemoveCatFromList(int catId) {
                     } else  {
                          currentCat.setClickableTrue();
                     }
+                } else if (i == 0 && hasNextInRow && hasPrevInRow && hasNextRow){
+                    currentCat.setClickableFalse(CatStatus.Loafing);
                 } else {
                     currentCat.setClickableTrue();
                 }
@@ -131,6 +139,19 @@ public void RemoveCatFromList(int catId) {
                     color.a = 1f;
                     nextLevelIndicatorRenderer.color = color;
                 }
+            }
+
+            if (nextLevelMap != null) {
+                nextLevelMap.SetActive(true);
+            }
+            if (levelMap != null) {
+                levelMap.SetActive(false);
+            }
+            if (nextLevelInstruction != null) {
+                nextLevelInstruction.SetActive(true);
+            }
+            if (levelInstruction != null) {
+                levelInstruction.SetActive(false);
             }
             this.gameObject.SetActive(false);
         } else {
