@@ -13,6 +13,8 @@ public class BoxAreaManager : MonoBehaviour
     public GameObject[] boxes;
     public LevelManager levelManager; 
 
+    public Modal gameOverModal;
+
     public int GetCatsCount()
     {
         return cats.Count; 
@@ -34,6 +36,10 @@ public class BoxAreaManager : MonoBehaviour
 
         bool isGameOver = IsGameOver();
         // Debug.Log("isGameOver: " + isGameOver);
+        if (isGameOver) {
+            gameOverModal.gameObject.SetActive(true);
+            return;
+        }
         bool isGameWin = levelManager.CheckIfGameWin();
         if (isGameWin) {
             levelManager.CompleteLevel();
