@@ -12957,6 +12957,7 @@ MonoBehaviour:
   - {fileID: 1643252814}
   - {fileID: 691246081}
   levelManager: {fileID: 1618375869}
+  gameOverModal: {fileID: 0}
 --- !u!1 &1426628287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8825555777175322835, guid: 2ca0324b70ffac943996165063512d6a, type: 3}
@@ -13830,6 +13831,7 @@ MonoBehaviour:
   - {fileID: 1426628287}
   - {fileID: 399503398}
   levelManager: {fileID: 1719579079}
+  gameOverModal: {fileID: 0}
 --- !u!61 &1594915478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24277,6 +24279,7 @@ MonoBehaviour:
   - {fileID: 1981697150}
   - {fileID: 1608940048}
   levelManager: {fileID: 1306783689}
+  gameOverModal: {fileID: 0}
 --- !u!1001 &8564256109556770871
 PrefabInstance:
   m_ObjectHideFlags: 0

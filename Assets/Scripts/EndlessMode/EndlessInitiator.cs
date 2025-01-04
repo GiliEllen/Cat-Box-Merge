@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndlessModeManager : MonoBehaviour
+public class EndlessInitiator : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> catPrefabs; // Prefabs for the 7 types of cats (order: Black, White, Orange, Calico, Sphinx, Siamese, Purple, Pink).
+    [SerializeField] private List<GameObject> catPrefabs; 
     private List<List<GameObject>> catMatrix;
 
     public void Start()

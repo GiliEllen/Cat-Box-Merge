@@ -11,11 +11,21 @@ public class Cat : MonoBehaviour
     public bool isClickable = true;
     public CatStatus catStatus = CatStatus.Loafing;
     public BoxAreaManager boxAreaManager;
-
     public int catId;
+    public Animator animator;
 
     void Awake() {
-        ChangeCatStatus(CatStatus.Loafing);
+        animator = GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            Debug.Log("Animator component found!");
+        }
+        else
+        {
+            Debug.LogError("Animator component not found on this GameObject!");
+        }
+        
     }
     
 
@@ -23,12 +33,23 @@ public class Cat : MonoBehaviour
     {
         isClickable = true;
         ChangeCatStatus(CatStatus.Standing);
+        animator.SetBool("isClickable", true);
+        animator.SetBool("isSitting", false);
+        animator.SetBool("isLoafing", false);
     }
 
     public void setClickableFalse(CatStatus status) 
     {
         isClickable = false;
         ChangeCatStatus(status);
+        animator.SetBool("isClickable", false);
+        if (status == CatStatus.Sitting) {
+            animator.SetBool("isSitting", true);
+            animator.SetBool("isLoafing", false);
+        } else if (status ==  CatStatus.Loafing) {
+            animator.SetBool("isSitting", false);
+            animator.SetBool("isLoafing", true);
+        }
     }
 
     void OnMouseDown()
