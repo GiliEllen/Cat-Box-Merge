@@ -14,6 +14,7 @@ public class BoxAreaManager : MonoBehaviour
     public LevelManager levelManager; 
 
     public Modal gameOverModal;
+    public AudioManager audioManager;
 
     public int GetCatsCount()
     {
@@ -27,6 +28,12 @@ public class BoxAreaManager : MonoBehaviour
 
     public void AddCat(Cat newCat)
     {
+        bool isGameOver = IsGameOver();
+        if (isGameOver) {
+            gameOverModal.gameObject.SetActive(true);
+            levelManager.gameObject.SetActive(false);
+            return;
+        }
         cats.Add(newCat);
         // Debug.Log("Cat added.");
         PositionCats(); 
@@ -34,10 +41,11 @@ public class BoxAreaManager : MonoBehaviour
         // Debug.Log(newCat.catId);
         levelManager.RemoveCatFromList(newCat.catId);
 
-        bool isGameOver = IsGameOver();
+        isGameOver = IsGameOver();
         // Debug.Log("isGameOver: " + isGameOver);
         if (isGameOver) {
             gameOverModal.gameObject.SetActive(true);
+            levelManager.gameObject.SetActive(false);
             return;
         }
         bool isGameWin = levelManager.CheckIfGameWin();
@@ -67,6 +75,7 @@ private void PositionCats()
                 cat.gameObject.SetActive(false);
             }
             cats.RemoveAll(cat => cat.color == color);
+            audioManager.PlayRandomMeow();
             // Debug.Log($"Removed all cats of color: {color}");
         }
 
