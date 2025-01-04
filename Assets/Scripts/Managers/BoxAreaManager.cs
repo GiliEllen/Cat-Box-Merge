@@ -6,7 +6,7 @@ using System.Linq;
 public class BoxAreaManager : MonoBehaviour
 {
     public List<Cat> cats;
-    public int maxCatsInRow  = 7;  
+    public int maxCatsInRow = 7;  
     public float spacing = 0.0f;
 
     public int columns = 7;            
@@ -15,6 +15,10 @@ public class BoxAreaManager : MonoBehaviour
 
     public Modal gameOverModal;
     public AudioManager audioManager;
+
+    private Dictionary<Cat, Vector3> catTargetPositions = new Dictionary<Cat, Vector3>(); 
+    private Dictionary<Cat, float> lerpStartTimes = new Dictionary<Cat, float>(); 
+    public float lerpDuration = 1f; 
 
     public int GetCatsCount()
     {
@@ -54,15 +58,41 @@ public class BoxAreaManager : MonoBehaviour
         }
     }
 
-private void PositionCats()
-{
-    for (int i = 0; i < cats.Count; i++)
+    private void PositionCats()
     {
-        Vector3 newPosition = boxes[i].transform.position;
-        newPosition.y += 0.25f;
-        cats[i].transform.position = newPosition;
+        for (int i = 0; i < cats.Count; i++)
+        {
+            Vector3 targetPosition = boxes[i].transform.position;
+            targetPosition.y += 0.25f; 
+            
+            catTargetPositions[cats[i]] = targetPosition;
+            lerpStartTimes[cats[i]] = Time.time; 
+        }
     }
-}
+
+    void Update()
+    {
+        // Move all cats smoothly using Lerp
+        foreach (var cat in cats)
+        {
+            if (catTargetPositions.ContainsKey(cat))
+            {
+                Vector3 startPosition = cat.transform.position;
+                Vector3 targetPosition = catTargetPositions[cat];
+
+                float lerpTime = (Time.time - lerpStartTimes[cat]) / lerpDuration; 
+                lerpTime = Mathf.Clamp01(lerpTime);  
+
+                cat.transform.position = Vector3.Lerp(startPosition, targetPosition, lerpTime); 
+
+                if (lerpTime >= 1f)
+                {
+                    catTargetPositions.Remove(cat);
+                    lerpStartTimes.Remove(cat);
+                }
+            }
+        }
+    }
 
     private void CheckAndRemoveCatsOfSameColor(string color)
     {
