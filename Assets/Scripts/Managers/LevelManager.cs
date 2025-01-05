@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public Cat[] catRow2 ;
     public Cat[] catRow3 ;
     public Cat[] catRow4 ;
+    public Cat[] catRow5 ;
+    public Cat[] catRow6 ;
 
     public List<List<Cat>> catMatrix;
     public BoxAreaManager boxAreaManager;
@@ -29,7 +31,9 @@ public class LevelManager : MonoBehaviour
             new List<Cat>(catRow1),
             new List<Cat>(catRow2),
             new List<Cat>(catRow3),
-            new List<Cat>(catRow4)
+            new List<Cat>(catRow4),
+            new List<Cat>(catRow5),
+            new List<Cat>(catRow6)
         };
         InitializeCatStatus();
     }

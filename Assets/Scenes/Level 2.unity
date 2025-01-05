@@ -4740,6 +4740,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  catRow5:
+  - {fileID: 0}
+  catRow6:
+  - {fileID: 0}
   boxAreaManager: {fileID: 2130973732}
   levelIndex: 0
   nextSubLevel: {fileID: 1075640717}
@@ -14113,6 +14117,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1474271910}
   - {fileID: 0}
+  catRow5:
+  - {fileID: 0}
+  catRow6:
+  - {fileID: 0}
   boxAreaManager: {fileID: 1402438200}
   levelIndex: 2
   nextSubLevel: {fileID: 0}
@@ -15834,6 +15842,10 @@ MonoBehaviour:
   - {fileID: 825182903}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  catRow5:
+  - {fileID: 0}
+  catRow6:
   - {fileID: 0}
   boxAreaManager: {fileID: 1594915477}
   levelIndex: 1
