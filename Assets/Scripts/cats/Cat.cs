@@ -19,11 +19,11 @@ public class Cat : MonoBehaviour
 
         if (animator != null)
         {
-            Debug.Log("Animator component found!");
+            // Debug.Log("Animator component found!");
         }
         else
         {
-            Debug.LogError("Animator component not found on this GameObject!");
+            // Debug.LogError("Animator component not found on this GameObject!");
         }
         
     }
@@ -55,13 +55,13 @@ public class Cat : MonoBehaviour
     void OnMouseDown()
     {
         if (!isClickable) {
-             Debug.Log("cat is BLOCK");
+            //  Debug.Log("cat is BLOCK");
             return;
         } else {
             //TODO:
             //move cat
-            Debug.Log("cat is OK to move");
-            Debug.Log(this);
+            // Debug.Log("cat is OK to move");
+            // Debug.Log(this);
             boxAreaManager.AddCat(this);
             setClickableFalse(CatStatus.Sitting);
         }

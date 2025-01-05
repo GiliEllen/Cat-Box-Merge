@@ -64,7 +64,7 @@ public void RemoveCatFromList(int catId) {
                 } else if (currentCat.catId == 0) {
                     continue;
                 } {
-                    Debug.Log(currentCat);
+                    // Debug.Log(currentCat);
                 }
 
                 bool hasNextInRow = (j + 1 < catMatrix[i].Count) && (catMatrix[i][j + 1] != null);
@@ -106,7 +106,7 @@ public void RemoveCatFromList(int catId) {
             {
                 if (cat != null && cat.catId != 0)
                 {
-                    Debug.Log("A cat is still active in the matrix.");
+                    // Debug.Log("A cat is still active in the matrix.");
                     return false;
                 }
             }
@@ -116,7 +116,7 @@ public void RemoveCatFromList(int catId) {
         {
             if (cat != null && cat.catId != 0)
             {
-                Debug.Log("A cat is still active in the box area.");
+                // Debug.Log("A cat is still active in the box area.");
                 return false;
             }
         }
@@ -159,6 +159,7 @@ public void RemoveCatFromList(int catId) {
             }
             this.gameObject.SetActive(false);
         } else {
+            Debug.Log("here");
             GameManager gameManager = GameManager.Instance;
             gameManager.CompleteLevel(levelIndex);
         }

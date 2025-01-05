@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     public int levelToLoad;
 
+     public int finalLevel; 
+    public GameObject gameWinPanel;
+    public GameObject mainMenuPanel;
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,11 +40,21 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainMenu")
+    if (scene.name == "MainMenu")
+    {
+        RebindButtons();
+    }
+
+    if (gameWinPanel != null)
+    {
+        Button restartButton = gameWinPanel.transform.Find("RestartButton").GetComponent<Button>();
+        if (restartButton != null)
         {
-            RebindButtons();
+            restartButton.onClick.RemoveAllListeners();
+            restartButton.onClick.AddListener(RestartGame);
         }
     }
+}
 
     private void RebindButtons()
     {
@@ -62,9 +76,35 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel(int levelIndex)
     {
+        Debug.Log("here2");
         levelProgress[levelIndex] = true;
-        SaveProgress();
         SceneManager.LoadScene("MainMenu");
+
+        if (levelIndex == finalLevel)
+        {
+            Debug.Log("win?");
+            ShowGameWinPanel();
+            mainMenuPanel.SetActive(false);
+        } else {
+            mainMenuPanel.SetActive(true);
+        }
+    }
+
+
+    private void ShowGameWinPanel()
+    {
+        if (mainMenuPanel != null)
+        {
+            mainMenuPanel.SetActive(false);
+        } else {
+            Debug.Log("still null");
+        }
+        if (gameWinPanel != null)
+        {
+            gameWinPanel.SetActive(true);
+        } else {
+            Debug.Log("still null");
+        }
     }
 
     private void SaveProgress()
@@ -80,12 +120,13 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int levelIndex)
     {
         string LevelName = "Level " + levelIndex;
+        mainMenuPanel.SetActive(false);
+        gameWinPanel.SetActive(false);
         SceneManager.LoadScene(LevelName);
     }
 
     public void startButtonMethod()
     {
-        Debug.Log("test");
         int levelIndex = levelProgress.Count + 1;
         Debug.Log(levelProgress.Count);
         LoadLevel(levelIndex);
@@ -94,5 +135,14 @@ public class GameManager : MonoBehaviour
     public void ExitButton()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RestartGame()
+    {
+        levelProgress.Clear();
+        isGameOver = false;
+
+        SceneManager.LoadScene("MainMenu");
+        Destroy(gameObject); 
     }
 }

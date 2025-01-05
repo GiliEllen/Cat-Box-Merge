@@ -12,7 +12,7 @@ public class Modal : MonoBehaviour
     }
 
     public void GoBackToMainMenu() {
-        Debug.Log("test");
+        // Debug.Log("test");
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -15889,7 +15889,7 @@ MonoBehaviour:
   catRow6:
   - {fileID: 0}
   boxAreaManager: {fileID: 1402438200}
-  levelIndex: 2
+  levelIndex: 3
   nextSubLevel: {fileID: 0}
   levelIndicator: {fileID: 1314293467}
   nextLevelIndicator: {fileID: 0}

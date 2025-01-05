@@ -110,7 +110,7 @@ public class BoxAreaManager : MonoBehaviour
         }
 
         if (IsGameOver()) {
-            Debug.Log("game is over");
+            // Debug.Log("game is over");
         }
     }
 
