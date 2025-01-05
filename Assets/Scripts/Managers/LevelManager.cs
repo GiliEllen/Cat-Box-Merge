@@ -37,7 +37,9 @@ public class LevelManager : MonoBehaviour
         };
         InitializeCatStatus();
         GameManager gameManager = GameManager.Instance;
-        gameManager.DeActivateLoader();
+        if (gameManager != null) {
+            gameManager.DeActivateLoader();
+        }
     }
 
 public void RemoveCatFromList(int catId) {
@@ -128,7 +130,9 @@ public void RemoveCatFromList(int catId) {
 
     public void CompleteLevel() {
         GameManager gameManager = GameManager.Instance;
-        gameManager.ActivateLoader();
+        if (gameManager != null) {    
+            gameManager.ActivateLoader();
+        }
         if (nextSubLevel != null) {
             nextSubLevel.SetActive(true);
             if (levelIndicator != null) {
@@ -162,10 +166,13 @@ public void RemoveCatFromList(int catId) {
                 levelInstruction.SetActive(false);
             }
             this.gameObject.SetActive(false);
-            gameManager.DeActivateLoader();
+            if (gameManager != null) {
+                gameManager.DeActivateLoader();
+            }
         } else {
-            Debug.Log("here");
-            gameManager.CompleteLevel(levelIndex);
+            if (gameManager != null) {
+                gameManager.CompleteLevel(levelIndex);
+            }
         }
     }
 }
