@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
      public int finalLevel; 
     public GameObject gameWinPanel;
     public GameObject mainMenuPanel;
+    public GameObject loadingPanel;
 
     private void Awake()
     {
@@ -20,7 +23,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadProgress();
         }
         else
         {
@@ -28,33 +30,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+    public void ActivateLoader() {
+        Debug.Log("work bitch");
+        loadingPanel.SetActive(true);
     }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+    public void DeActivateLoader() {
+        loadingPanel.SetActive(false);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-    if (scene.name == "MainMenu")
-    {
-        RebindButtons();
-    }
-
-    if (gameWinPanel != null)
-    {
-        Button restartButton = gameWinPanel.transform.Find("RestartButton").GetComponent<Button>();
-        if (restartButton != null)
+        ActivateLoader();
+        if (scene.name == "MainMenu")
         {
-            restartButton.onClick.RemoveAllListeners();
-            restartButton.onClick.AddListener(RestartGame);
+            RebindButtons();
         }
+
+        if (gameWinPanel != null)
+        {
+            Button restartButton = gameWinPanel.transform.Find("RestartButton").GetComponent<Button>();
+            if (restartButton != null)
+            {
+                restartButton.onClick.RemoveAllListeners();
+                restartButton.onClick.AddListener(RestartGame);
+            }
+        }
+        DeActivateLoader();
     }
-}
 
     private void RebindButtons()
     {
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel(int levelIndex)
     {
+        ActivateLoader();
         Debug.Log("here2");
         levelProgress[levelIndex] = true;
         SceneManager.LoadScene("MainMenu");
@@ -88,6 +91,7 @@ public class GameManager : MonoBehaviour
         } else {
             mainMenuPanel.SetActive(true);
         }
+        DeActivateLoader();
     }
 
 
@@ -107,16 +111,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SaveProgress()
-    {
-        // Serialize and save data (e.g., PlayerPrefs, JSON).
-    }
-
-    private void LoadProgress()
-    {
-        // Deserialize and load data.
-    }
-
     public void LoadLevel(int levelIndex)
     {
         string LevelName = "Level " + levelIndex;
@@ -125,13 +119,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(LevelName);
     }
 
-    public void startButtonMethod()
+    public async void startButtonMethod()
     {
+        ActivateLoader();
         int levelIndex = levelProgress.Count + 1;
         Debug.Log(levelProgress.Count);
+        await Task.Delay(2000);
         LoadLevel(levelIndex);
     }
-
+    
     public void ExitButton()
     {
         SceneManager.LoadScene("MainMenu");
